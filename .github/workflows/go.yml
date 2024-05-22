@@ -8,6 +8,10 @@ on:
   pull_request:
     branches: ["master"]
 
+permissions:
+  contents: read
+  packages: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -40,6 +44,3 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/testdoang:latest
-
-permissions:
-  secrets: read

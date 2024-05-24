@@ -50,4 +50,4 @@ jobs:
       - name: Delete old container
         run: docker rm -f go-test
       - name: Run docker container
-        run: docker run -d -p 4040:4040 --name go-test ${{ secrets.DOCKER_USERNAME }}/testdoang:latest
+        run: docker run -d -p 8080:8080 --name go-test ${{ secrets.DOCKER_USERNAME }}/testdoang:latest

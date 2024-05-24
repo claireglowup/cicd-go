@@ -40,3 +40,14 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/testdoang:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull docker image
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/testdoang:latest
+      - name: Delete old container
+        run: docker rm -f go-test
+      - name: Run docker container
+        run: docker run -d -p 4040:4040 --name go-test ${{ secrets.DOCKER_USERNAME }}/testdoang:latest
